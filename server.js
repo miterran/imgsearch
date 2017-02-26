@@ -31,7 +31,7 @@ app.get('/api/imagesearch/:item', function(req, res){
 });
 app.get('/api/latest/imagesearch', function(req, res){
     var savedRecord = [];
-    Urls.find({}).limit(10).then(function(result){
+    Urls.find({}).limit(10).sort({$natural : -1}).then(function(result){
         for(var i = 0; i < result.length; i++){
             var newRecord = {'keyword': result[i]['keyword'], 'when': result[i]['when']};
             savedRecord.push(newRecord);
